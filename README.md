@@ -3,11 +3,12 @@
 A fully functional chess game built in Python where you play against an AI opponent powered by the **Minimax algorithm with Alpha-Beta Pruning**.
 
 ## Features
-- Complete chess rules (all piece movements, check, checkmate, stalemate, pawn promotion)
+- Complete chess rules (all piece movements, check, checkmate, stalemate, castling, and pawn underpromotion)
 - AI opponent using Minimax with Alpha-Beta Pruning (depth 3 — looks 3 moves ahead)
+- Move Ordering & Tie-Breaking applied to make the AI faster and more unpredictable
 - Piece-Square Tables for positional evaluation
-- Real-time move highlighting and check detection
-- Threaded AI so UI never freezes
+- Modern minimalist UI with real-time move highlighting, check detection, and timer clocks
+- Threaded AI with deep-copied states so the UI never freezes
 
 ## Tech Stack
 - Python 3.x
@@ -16,23 +17,26 @@ A fully functional chess game built in Python where you play against an AI oppon
 ## Setup & Run
 
 ```bash
-pip install pygame
+pip install -r requirements.txt
 python main.py
 ```
 
+
 ## How to Play
-- **Click** a white piece to select it (green highlight)
-- **Click** a destination square (green dots show legal moves)
+- **Click** a white piece to select it (highlighted with a premium gold glow)
+- **Click** a destination square (transparent dots show legal moves)
 - AI (Black) responds automatically
-- Press **R** to restart the game
+- **Pawn Promotion:** If your pawn reaches the end, a popup menu will let you choose your piece (Queen, Rook, Bishop, or Knight)
+- Use the sidebar buttons to **Restart** or **Resign** at any time
 
 ## Project Structure
 ```
 chess_ai/
-├── main.py       # Pygame UI + Game loop
-├── board.py      # Board state, move execution, check detection
-├── pieces.py     # All piece classes with move generation
-├── ai.py         # Minimax + Alpha-Beta Pruning + Board Evaluation
+├── main.py             # Pygame UI, game loop, timers & buttons
+├── board.py            # Board state, move execution, check/castling detection
+├── pieces.py           # All piece classes with move generation rules
+├── ai.py               # Minimax + Alpha-Beta Pruning + Board Evaluation
+├── requirements.txt    # Dependencies
 └── README.md
 ```
 
@@ -55,7 +59,4 @@ Each position is scored using:
 - **Material value**: Pawn=100, Knight=320, Bishop=330, Rook=500, Queen=900
 - **Piece-Square Tables**: Bonus/penalty based on piece position (e.g., knights are stronger in the center)
 
-## CV Points
-- "Implemented Minimax algorithm with Alpha-Beta Pruning, reducing search nodes by ~60%"
-- "Built complete chess engine with legal move generation, check/checkmate detection"
-- "Used piece-square tables for positional board evaluation"
+
